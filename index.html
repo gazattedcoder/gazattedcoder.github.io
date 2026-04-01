@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Profile</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav li { margin: 0 15px; }
+        nav a { color: white; text-decoration: none; font-weight: bold; }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 60px;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+
+        /* Content Sections */
+        section {
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 10px; }
+
+        /* Contact Section */
+        .contact-info {
+            background: #eee;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <h1>Welcome to My Profile</h1>
+        <p>Public Administration | Engineering | Governance</p>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            Welcome to my professional landing page. I am focused on the intersection of 
+            effective governance, public service, and technical innovation. This site 
+            serves as a repository for my projects and professional updates.
+        </p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-info">
+            <p><strong>Location:</strong> Kathmandu, Nepal</p>
+            <p><strong>Email:</strong> your.email@example.com</p>
+            <p>Interested in collaboration or professional inquiries? Feel free to reach out via GitHub.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 | Built with GitHub Pages</p>
+    </footer>
+
+</body>
+</html>
