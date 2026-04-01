@@ -3,109 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Profile</title>
+    <title>Dynamic Professional Profile</title>
     <style>
-        /* General Styles */
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --light: #f4f7f6;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
-            color: #333;
-            scroll-behavior: smooth;
+            background-color: var(--light);
+            overflow-x: hidden;
         }
 
         /* Navigation */
         nav {
-            background: #2c3e50;
-            color: white;
+            background: var(--primary);
             padding: 1rem;
             position: fixed;
             width: 100%;
-            top: 0;
+            display: flex;
+            justify-content: center;
             z-index: 1000;
         }
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav li { margin: 0 15px; }
-        nav a { color: white; text-decoration: none; font-weight: bold; }
 
-        /* Hero Section */
-        .hero {
-            height: 60vh;
-            background: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-top: 60px;
-        }
-        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
-
-        /* Content Sections */
-        section {
-            padding: 80px 20px;
-            max-width: 800px;
-            margin: auto;
-        }
-        h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 10px; }
-
-        /* Contact Section */
-        .contact-info {
-            background: #eee;
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #2c3e50;
+        nav button {
+            background: none;
+            border: none;
             color: white;
+            margin: 0 20px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav button:hover { color: var(--accent); }
+
+        /* Dynamic Sections */
+        .content-section {
+            display: none; /* Hidden by default */
+            padding: 120px 20px;
+            max-width: 900px;
+            margin: auto;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .active { display: block; } /* Show active section */
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Styling for visual appeal */
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 { color: var(--primary); font-size: 2.5rem; }
+        
+        .btn-main {
+            background: var(--accent);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <button onclick="showSection('home')">Home</button>
+        <button onclick="showSection('about')">Profile</button>
+        <button onclick="showSection('projects')">Focus</button>
     </nav>
 
-    <header id="home" class="hero">
-        <h1>Welcome to My Profile</h1>
-        <p>Public Administration | Engineering | Governance</p>
-    </header>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            Welcome to my professional landing page. I am focused on the intersection of 
-            effective governance, public service, and technical innovation. This site 
-            serves as a repository for my projects and professional updates.
-        </p>
-    </section>
-
-    <section id="contact">
-        <h2>Contact</h2>
-        <div class="contact-info">
-            <p><strong>Location:</strong> Kathmandu, Nepal</p>
-            <p><strong>Email:</strong> your.email@example.com</p>
-            <p>Interested in collaboration or professional inquiries? Feel free to reach out via GitHub.</p>
+    <section id="home" class="content-section active">
+        <div class="card">
+            <h1>Administrative & Governance Portfolio</h1>
+            <p>Integrating technical systems with public service excellence.</p>
+            <a href="#" class="btn-main" onclick="showSection('about')">Learn More</a>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 | Built with GitHub Pages</p>
-    </footer>
+    <section id="about" class="content-section">
+        <div class="card">
+            <h2>Professional Profile</h2>
+            <p>Dedicated to institutional reform and efficient human resource management within the public sector. Expertise lies in bridging the gap between technical infrastructure and administrative policy.</p>
+        </div>
+    </section>
+
+    <section id="projects" class="content-section">
+        <div class="card">
+            <h2>Strategic Focus Areas</h2>
+            <ul>
+                <li>Public Procurement & Contract Admin</li>
+                <li>Digital Governance & SCADA Systems</li>
+                <li>Organizational Development</li>
+                <li>Sustainable Infrastructure Management</li>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
 
 </body>
 </html>
