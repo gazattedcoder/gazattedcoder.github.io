@@ -3,132 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Professional Profile</title>
+    <title>Animated Professional Portfolio</title>
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #3498db;
-            --light: #f4f7f6;
+            --primary-blue: #1a5f7a;
+            --light-gray: #f8f9fa;
+            --border-color: #e0e0e0;
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            background-color: var(--light);
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            background: var(--primary);
-            padding: 1rem;
-            position: fixed;
-            width: 100%;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--light-gray);
             display: flex;
             justify-content: center;
-            z-index: 1000;
+            padding: 50px 20px;
         }
 
-        nav button {
-            background: none;
-            border: none;
-            color: white;
-            margin: 0 20px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: color 0.3s;
-            font-weight: 500;
+        .container {
+            width: 100%;
+            max-width: 600px;
         }
 
-        nav button:hover { color: var(--accent); }
-
-        /* Dynamic Sections */
-        .content-section {
-            display: none; /* Hidden by default */
-            padding: 120px 20px;
-            max-width: 900px;
-            margin: auto;
-            animation: fadeIn 0.6s ease-in-out;
-        }
-
-        .active { display: block; } /* Show active section */
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Styling for visual appeal */
-        .card {
+        /* The Detail Wrapper */
+        .detail-item {
             background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden; /* Crucial for animation */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
-        h1 { color: var(--primary); font-size: 2.5rem; }
-        
-        .btn-main {
-            background: var(--accent);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 5px;
-            text-decoration: none;
+        /* The Clickable Header */
+        .detail-header {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            transition: background 0.3s;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .detail-header:hover {
+            background-color: #f1f7f9;
+        }
+
+        /* The Arrow Icon */
+        .arrow {
+            border: solid var(--primary-blue);
+            border-width: 0 2px 2px 0;
             display: inline-block;
-            margin-top: 20px;
+            padding: 3px;
+            transform: rotate(45deg);
+            transition: transform 0.4s ease;
+        }
+
+        /* The Animated Content Area */
+        .detail-content {
+            max-height: 0; /* Hidden by default */
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1); /* "The Slide Effect" */
+            background: #fff;
+        }
+
+        .content-inner {
+            padding: 0 20px 20px 20px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Active State (Controlled by JS) */
+        .detail-item.active .detail-content {
+            max-height: 1000px; /* Large enough to fit content */
+            transition: max-height 0.8s ease-in-out;
+        }
+
+        .detail-item.active .arrow {
+            transform: rotate(-135deg);
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <button onclick="showSection('home')">Home</button>
-        <button onclick="showSection('about')">Profile</button>
-        <button onclick="showSection('projects')">Focus</button>
-    </nav>
+<div class="container">
+    <h2>Project Specifications</h2>
 
-    <section id="home" class="content-section active">
-        <div class="card">
-            <h1>Administrative & Governance Portfolio</h1>
-            <p>Integrating technical systems with public service excellence.</p>
-            <a href="#" class="btn-main" onclick="showSection('about')">Learn More</a>
+    <div class="detail-item">
+        <div class="detail-header" onclick="toggleDetail(this)">
+            <span>Administrative Governance</span>
+            <i class="arrow"></i>
         </div>
-    </section>
-
-    <section id="about" class="content-section">
-        <div class="card">
-            <h2>Professional Profile</h2>
-            <p>Dedicated to institutional reform and efficient human resource management within the public sector. Expertise lies in bridging the gap between technical infrastructure and administrative policy.</p>
+        <div class="detail-content">
+            <div class="content-inner">
+                Focused on institutional reform and the implementation of performance-based appraisal systems 
+                within public enterprises to ensure transparency and accountability.
+            </div>
         </div>
-    </section>
+    </div>
 
-    <section id="projects" class="content-section">
-        <div class="card">
-            <h2>Strategic Focus Areas</h2>
-            <ul>
-                <li>Public Procurement & Contract Admin</li>
-                <li>Digital Governance & SCADA Systems</li>
-                <li>Organizational Development</li>
-                <li>Sustainable Infrastructure Management</li>
-            </ul>
+    <div class="detail-item">
+        <div class="detail-header" onclick="toggleDetail(this)">
+            <span>Infrastructure Management</span>
+            <i class="arrow"></i>
         </div>
-    </section>
+        <div class="detail-content">
+            <div class="content-inner">
+                Oversight of large-scale water utility systems, including SCADA integration, 
+                wastewater treatment protocols, and smart metering (AMR) deployment.
+            </div>
+        </div>
+    </div>
 
-    <script>
-        function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.content-section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
+</div>
 
-            // Show the selected section
-            document.getElementById(sectionId).classList.add('active');
+<script>
+    function toggleDetail(element) {
+        const item = element.parentElement;
+        
+        // Optional: Close other open items (Accordion style)
+        document.querySelectorAll('.detail-item').forEach(el => {
+            if (el !== item) el.classList.remove('active');
+        });
 
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-    </script>
+        // Toggle the clicked item
+        item.classList.toggle('active');
+    }
+</script>
 
 </body>
 </html>
