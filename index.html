@@ -3,135 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Professional Portfolio</title>
+    <title>Portfolio | Modern Clone</title>
     <style>
         :root {
-            --primary-blue: #1a5f7a;
-            --light-gray: #f8f9fa;
-            --border-color: #e0e0e0;
+            --bg-color: #0a0a0a;
+            --text-color: #ffffff;
+            --accent: #3d3d3d;
+            --font-main: 'Inter', sans-serif;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--light-gray);
-            display: flex;
-            justify-content: center;
-            padding: 50px 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            line-height: 1.5;
         }
 
-        .container {
-            width: 100%;
-            max-width: 600px;
-        }
-
-        /* The Detail Wrapper */
-        .detail-item {
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin-bottom: 15px;
-            overflow: hidden; /* Crucial for animation */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        /* The Clickable Header */
-        .detail-header {
-            padding: 20px;
-            cursor: pointer;
+        /* Sticky Navigation */
+        nav {
+            position: sticky;
+            top: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: white;
-            transition: background 0.3s;
-            font-weight: 600;
-            color: var(--primary-blue);
+            padding: 30px 5%;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
         }
 
-        .detail-header:hover {
-            background-color: #f1f7f9;
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: 0.3s;
         }
 
-        /* The Arrow Icon */
-        .arrow {
-            border: solid var(--primary-blue);
-            border-width: 0 2px 2px 0;
-            display: inline-block;
-            padding: 3px;
-            transform: rotate(45deg);
-            transition: transform 0.4s ease;
+        .nav-links a:hover { opacity: 1; }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 5% 60px;
+            max-width: 1200px;
         }
 
-        /* The Animated Content Area */
-        .detail-content {
-            max-height: 0; /* Hidden by default */
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1;
+            font-weight: 500;
+            margin-bottom: 40px;
+            letter-spacing: -2px;
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 40px 5%;
+        }
+
+        .project-card {
+            background: var(--accent);
+            height: 500px;
+            border-radius: 12px;
+            position: relative;
             overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1); /* "The Slide Effect" */
-            background: #fff;
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
         }
 
-        .content-inner {
-            padding: 0 20px 20px 20px;
-            color: #555;
-            line-height: 1.6;
+        .project-card:hover {
+            transform: scale(0.98);
         }
 
-        /* Active State (Controlled by JS) */
-        .detail-item.active .detail-content {
-            max-height: 1000px; /* Large enough to fit content */
-            transition: max-height 0.8s ease-in-out;
+        .project-info {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
         }
 
-        .detail-item.active .arrow {
-            transform: rotate(-135deg);
+        .project-info h3 { font-size: 1.5rem; margin-bottom: 5px; }
+        .project-info p { opacity: 0.6; font-size: 0.8rem; text-transform: uppercase; }
+
+        /* Responsive Mobile */
+        @media (max-width: 768px) {
+            .project-grid { grid-template-columns: 1fr; }
+            .project-card { height: 400px; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Project Specifications</h2>
-
-    <div class="detail-item">
-        <div class="detail-header" onclick="toggleDetail(this)">
-            <span>Administrative Governance</span>
-            <i class="arrow"></i>
+    <nav>
+        <div class="logo">PORTFOLIO.</div>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
         </div>
-        <div class="detail-content">
-            <div class="content-inner">
-                Focused on institutional reform and the implementation of performance-based appraisal systems 
-                within public enterprises to ensure transparency and accountability.
+    </nav>
+
+    <section class="hero">
+        <h1>Building digital <br> experiences & systems.</h1>
+    </section>
+
+    <section id="work" class="project-grid">
+        <div class="project-card" style="background: linear-gradient(45deg, #1e3c72, #2a5298);">
+            <div class="project-info">
+                <p>Infrastructure</p>
+                <h3>SCADA Integration</h3>
             </div>
         </div>
-    </div>
 
-    <div class="detail-item">
-        <div class="detail-header" onclick="toggleDetail(this)">
-            <span>Infrastructure Management</span>
-            <i class="arrow"></i>
-        </div>
-        <div class="detail-content">
-            <div class="content-inner">
-                Oversight of large-scale water utility systems, including SCADA integration, 
-                wastewater treatment protocols, and smart metering (AMR) deployment.
+        <div class="project-card" style="background: linear-gradient(45deg, #2c3e50, #4ca1af);">
+            <div class="project-info">
+                <p>Public Service</p>
+                <h3>Governance Reform</h3>
             </div>
         </div>
-    </div>
 
-</div>
+        <div class="project-card" style="background: linear-gradient(45deg, #134e5e, #71b280);">
+            <div class="project-info">
+                <p>Management</p>
+                <h3>HR Development</h3>
+            </div>
+        </div>
 
-<script>
-    function toggleDetail(element) {
-        const item = element.parentElement;
-        
-        // Optional: Close other open items (Accordion style)
-        document.querySelectorAll('.detail-item').forEach(el => {
-            if (el !== item) el.classList.remove('active');
+        <div class="project-card" style="background: linear-gradient(45deg, #434343, #000000);">
+            <div class="project-info">
+                <p>Technical</p>
+                <h3>Procurement Audit</h3>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll reveal effect
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(30px)";
+            card.style.transition = "all 0.8s ease-out";
+            observer.observe(card);
         });
-
-        // Toggle the clicked item
-        item.classList.toggle('active');
-    }
-</script>
-
+    </script>
 </body>
 </html>
